@@ -217,12 +217,12 @@ public class ScenaJocNou extends JPanel{
 	public void pornire_transport_dus()
 	{
 		timer1 = new Timer();
-		timer1.schedule(new MiscareDus(), 0, 1);
+		timer1.schedule(new MiscareDus(), 0, 5);
 	}
 	
 	public void pornire_transport_intors()
 	{
 		timer2 = new Timer();
-		timer2.schedule(new MiscareIntors(), 0, 1);
+		timer2.schedule(new MiscareIntors(), 0, 5);
 	}
 }

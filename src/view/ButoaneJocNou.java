@@ -10,6 +10,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -28,11 +29,13 @@ public class ButoaneJocNou {
 	
 	private JButton b_piata;
 	private JButton b_magazin;
+	private JButton b_fabrica;
 	private JButton b_ziua_urmatoare;
 	private JButton b_continua;
 	
 	BufferedImage image1;
 	BufferedImage image2;
+	BufferedImage image3;
 	
 	JFrame f_progres;
 	
@@ -42,6 +45,7 @@ public class ButoaneJocNou {
 		
 		b_piata = new JButton();
 		b_magazin = new JButton();
+		b_fabrica = new JButton();
 		b_ziua_urmatoare = new JButton("Ziua urmatoare");
 		b_continua = new JButton("Continua");
 		
@@ -51,6 +55,7 @@ public class ButoaneJocNou {
 		
 		adaugare_actiune_piata();
 		adaugare_actiune_magazin();
+		adaugare_actiune_fabrica();
 		adaugare_actiune_ziua_urmatoare();
 		adaugare_actiune_continua();
 	}
@@ -64,6 +69,10 @@ public class ButoaneJocNou {
 		b_magazin.setFocusPainted(false);
 		b_magazin.setBorder(null);
 		b_magazin.setBounds(20, 120, 150, 150);
+		
+		b_fabrica.setFocusPainted(false);
+		b_fabrica.setBorder(null);
+		b_fabrica.setBounds(900, 120, 150, 150);
 		
 		b_ziua_urmatoare.setFocusPainted(false);
 		b_ziua_urmatoare.setBorder(null);
@@ -86,6 +95,8 @@ public class ButoaneJocNou {
 		
 		p.add(b_magazin);
 		
+		p.add(b_fabrica);
+		
 		p.add(b_ziua_urmatoare);
 	}
 	
@@ -101,11 +112,17 @@ public class ButoaneJocNou {
 	    } catch (IOException ex) {
 	    }
 
+	    try {                
+	        image3 = ImageIO.read(new File("Materiale\\fabrica.png"));
+	    } catch (IOException ex) {
+	    }
 	    
 	    Image image_scaled1 = image1.getScaledInstance(300, 150, Image.SCALE_SMOOTH);
 	    b_piata.setIcon(new ImageIcon(image_scaled1));
 	    
 	    b_magazin.setIcon(new ImageIcon(image2));
+	    
+	    b_fabrica.setIcon(new ImageIcon(image3));
 	}
 	
 	private void adaugare_actiune_piata()
@@ -123,7 +140,23 @@ public class ButoaneJocNou {
 		b_magazin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	aplicatie.setare_scena4();
+            	if(aplicatie.getScena2().getStareTransport() == false)
+            	{
+            		aplicatie.setare_scena4();
+            	}
+            }
+        });
+	}
+	
+	private void adaugare_actiune_fabrica()
+	{
+		b_fabrica.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	if(aplicatie.getScena2().getStareTransport() == false)
+            	{
+            		aplicatie.setare_scena5();
+            	}
             }
         });
 	}
@@ -133,23 +166,13 @@ public class ButoaneJocNou {
 		b_ziua_urmatoare.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        		adaugare_fereastra_progres();
-        		aplicatie.setare_scena2_ziua_urmatoare();
+            	adaugare_fereastra_progres_si_vanzare_produse();
+        		aplicatie.setare_scena2();
             }
         });
 	}
 	
-	private void adaugare_actiune_continua()
-	{
-		b_continua.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	f_progres.dispatchEvent(new WindowEvent(f_progres, WindowEvent.WINDOW_CLOSING));
-            }
-        });
-	}
-	
-	private void adaugare_fereastra_progres()
+	private void adaugare_fereastra_progres_si_vanzare_produse()
 	{
 		f_progres = new JFrame();
 		f_progres.setUndecorated(true);
@@ -163,14 +186,41 @@ public class ButoaneJocNou {
     	
     	int profit = 0;
     	int produse_vandute = 0;
+    	
+    	Jucator referinta_player = Jucator.getInstance();
+		referinta_player.setZiua(referinta_player.getZiua() + 1);
+    	
     	for(Produs p : Depozit.getInstance().getEvidenta())
     	{
-    		produse_vandute = produse_vandute + p.getCantitateMagazin();
-    		
-    		if(p.getCantitateMagazin() > 0)
-    		{
+			if(p.getCantitateMagazin() > 0)
+			{
+	    		produse_vandute = produse_vandute + p.getCantitateMagazin();
+	    		
     			profit = profit + (p.getPretActual() - p.getPretCumparare());
-    		}
+	    		
+				referinta_player.setBani(referinta_player.getBani() + p.getCantitateMagazin() * p.getPretActual());
+				p.setCantitateMagazin(0);
+			}
+			
+			Random rand = new Random();
+			int crestere = rand.nextInt(2);
+			
+			if(crestere == 0)
+			{
+				int procent = rand.nextInt(10) + 10;
+				if((p.getPretActual() - (procent * p.getPretActual()) / 100) > 0)
+				{
+					p.setPretActual(p.getPretActual() - (procent * p.getPretActual()) / 100);
+				}
+			}
+			else
+			{
+				int procent = rand.nextInt(20) + 10;
+				p.setPretActual(p.getPretActual() + (procent * p.getPretActual()) / 100);
+			}
+			
+			int cantitate = rand.nextInt(4);
+			p.setCantitatePiata(cantitate);
     	}
     	
     	JLabel l_progres1 = new JLabel("PROGRES");
@@ -201,7 +251,7 @@ public class ButoaneJocNou {
     	l_progres4.setForeground(Color.white);
     	l_progres4.setFont(new Font("Times New Roman", Font.BOLD, 20));
     	l_progres4.setBounds(10, 200, 300, 50);
-    	l_progres4.setText("Bani necesari: " + (1000 - Jucator.getInstance().getBani()));
+    	l_progres4.setText("Bani necesari: " + (1000 - referinta_player.getBani()));
     	
     	p_progres.add(l_progres1);
     	p_progres.add(l_progres2);
@@ -212,4 +262,15 @@ public class ButoaneJocNou {
     	
     	f_progres.add(p_progres);
 	}
+	
+	private void adaugare_actiune_continua()
+	{
+		b_continua.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	f_progres.dispatchEvent(new WindowEvent(f_progres, WindowEvent.WINDOW_CLOSING));
+            }
+        });
+	}
+	
 }

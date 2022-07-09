@@ -41,6 +41,7 @@ public class FereastraAplicatie{
 	private ScenaJocNou scena2;
 	private ScenaPiata scena3;
 	private ScenaMagazin scena4;
+	private ScenaFabrica scena5;
 	
 	private ButoaneMeniu b = new ButoaneMeniu(this);
 	
@@ -48,6 +49,11 @@ public class FereastraAplicatie{
 	
 	private FereastraAplicatie()
 	{	
+	}
+	
+	public ScenaJocNou getScena2()
+	{
+		return scena2;
 	}
 	
 	public void start_aplicatie()
@@ -69,6 +75,7 @@ public class FereastraAplicatie{
 		creare_scena2();
 		creare_scena3();
 		creare_scena4();
+		creare_scena5();
 		
 		setare_meniu_principal();
 	}
@@ -109,6 +116,7 @@ public class FereastraAplicatie{
 	{
 		nr_scena = 2;
 		
+		scena2.update_zi();
 		scena2.update_bani();
 		
 		cardLayout.show(p, "scena2");
@@ -122,7 +130,6 @@ public class FereastraAplicatie{
 		
 		scena2.update_bani();
 		
-		
 		if(scena2.getStareTransport() == false)
 		{
 			scena2.setStarePreluareMarfa(false);
@@ -130,53 +137,6 @@ public class FereastraAplicatie{
 			scena2.pornire_transport_dus();
 			scena2.pornire_transport_intors();
 		}
-		
-		scena4.update_produse_detinute();
-		
-		cardLayout.show(p, "scena2");
-		f.repaint();
-		f.revalidate();
-	}
-	
-	public void setare_scena2_ziua_urmatoare()
-	{
-		referinta_player.setZiua(referinta_player.getZiua() + 1);
-		
-		scena2.update_zi();
-		
-		for(Produs p : Depozit.getInstance().getEvidenta())
-		{
-			if(p.getCantitateMagazin() > 0)
-			{
-				referinta_player.setBani(referinta_player.getBani() + p.getCantitateMagazin() * p.getPretActual());
-				p.setCantitateMagazin(0);
-			}
-			
-			Random rand = new Random();
-			int crestere = rand.nextInt(2);
-			
-			if(crestere == 0)
-			{
-				int procent = rand.nextInt(10) + 1;
-				if((p.getPretActual() - (procent * p.getPretActual()) / 100) > 0)
-				{
-					p.setPretActual(p.getPretActual() - (procent * p.getPretActual()) / 100);
-				}
-			}
-			else
-			{
-				int procent = rand.nextInt(20) + 1;
-				p.setPretActual(p.getPretActual() + (procent * p.getPretActual()) / 100);
-			}
-			
-			int cantitate = rand.nextInt(4);
-			p.setCantitatePiata(cantitate);
-		}
-		
-		scena2.update_bani();
-		scena4.update_produse_detinute();
-		scena4.update_produse_din_magazin(scena4.getRaftSelectat());
-		scena3.update_table();
 		
 		cardLayout.show(p, "scena2");
 		f.repaint();
@@ -195,6 +155,7 @@ public class FereastraAplicatie{
 		nr_scena = 3;
 		
 		scena3.update_bani();
+		scena3.update_table();
 		
 		cardLayout.show(p, "scena3");
 		f.repaint();
@@ -212,7 +173,27 @@ public class FereastraAplicatie{
 	{
 		nr_scena = 4;
 		
+		scena4.update_produse_detinute();
+		scena4.update_produse_din_magazin(scena4.getRaftSelectat());
+		
 		cardLayout.show(p, "scena4");
+		f.repaint();
+		f.revalidate();
+	}
+	
+	
+	private void creare_scena5()
+	{
+		scena5 = new ScenaFabrica();
+		
+		p.add(scena5, "scena5");
+	}
+	
+	public void setare_scena5()
+	{
+		nr_scena = 5;
+		
+		cardLayout.show(p, "scena5");
 		f.repaint();
 		f.revalidate();
 	}
@@ -224,7 +205,7 @@ public class FereastraAplicatie{
 		private static final long serialVersionUID = 1L;
 
 		public void actionPerformed(ActionEvent e){
-			if(nr_scena == 2 || nr_scena == 3 || nr_scena == 4)
+			if(nr_scena == 2 || nr_scena == 3 || nr_scena == 4 || nr_scena == 5)
 			{
 				f_esc = new JFrame();
 				
