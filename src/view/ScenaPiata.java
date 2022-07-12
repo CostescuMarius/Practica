@@ -120,10 +120,10 @@ public class ScenaPiata extends JPanel{
 		
 		Vector<String> nume = new Vector<>();
 		nume.add("Denumire produs                           "
-				+ "                           Cantitate Piata                         "
-				+ "                           Cantitate Magazin                       "
-				+ "                           Valabilitate                            " 
-				+ "                           Pret");
+				+ "                           Cantitate Piata                        "
+				+ "                           Cantitate Player                       "
+				+ "                           Pret Actual                            " 
+				+ "                           Pret Cumparere");
 		
 		TableModel model = new DefaultTableModel(data, nume)
 		{
@@ -160,7 +160,8 @@ public class ScenaPiata extends JPanel{
 		table.addMouseListener(new MouseAdapter() {
 		    @Override    
 		    public void mouseClicked(MouseEvent evt) {
-		    	if ((evt.getClickCount() == 2) && (table.getSelectedRow() != -1))
+		    	if ((evt.getClickCount() == 2) && (table.getSelectedRow() != -1)
+		    			&& (player.getBani() - data.get(table.getSelectedRow()).get(0).getPretActual() >= 0))
 		    	{
 		    		player.setBani(player.getBani() - data.get(table.getSelectedRow()).get(0).getPretActual());
 		    		
@@ -169,13 +170,6 @@ public class ScenaPiata extends JPanel{
 		    		update_lista();
 
 		    		Produs p_selectat = data.get(table.getSelectedRow()).get(0);
-		    		/*Produs p_temp = new Produs(p_selectat.getDenumire(), p_selectat.getCantitatePiata() - 1, 
-		    				p_selectat.getCantitatePlayer() + 1, p_selectat.getCantitateMagazin(), p_selectat.getValabilitate(), p_selectat.getPretCumparare(),
-		    				p_selectat.getPretVanzare(), p_selectat.getCategorie());
-		    		
-		    		depozit_piata.remove_element(p_selectat);
-		    		depozit_piata.add_element(p_temp);*/
-		  
 		    		
 		    		for(Produs produs : depozit_piata.getEvidenta())
 		    		{
@@ -243,6 +237,12 @@ public class ScenaPiata extends JPanel{
     				+ "   " + "Cantitate: " + cantitate[index];
 		}
 		index++;
+	}
+	
+	public void curatare_lista()
+	{
+		Vector<String> sumar_produse_final = new Vector<>();
+		cos_cumparaturi.setListData(sumar_produse_final);
 	}
 	
 	private void update_lista()

@@ -61,7 +61,7 @@ public class ScenaMagazin extends JPanel{
 	
 	private void adaugare_selectare_raft()
 	{
-	    String denumiri_rafturi[] = {"Toate", "Bauturi", "Fructe", "Legume", "Mezeluri"};
+	    String denumiri_rafturi[] = {"Toate", "Bauturi", "Fructe", "Legume", "Alimente", "Materii prime"};
 	    
 	    raft = new JComboBox<>(denumiri_rafturi); 
 	    raft.setBounds(205, 55, 100, 30);
@@ -80,7 +80,6 @@ public class ScenaMagazin extends JPanel{
 			 
 		    @Override
 		    public void actionPerformed(ActionEvent event) {
-		        //JComboBox<String> combo_box = (JComboBox<String>) event.getSource();
 		        raft_selectat = (String) raft.getSelectedItem();
 		        
 		        update_produse_din_magazin(raft_selectat);
@@ -167,7 +166,8 @@ public class ScenaMagazin extends JPanel{
 			if(produs.getCantitatePlayer() > 0)
 			{
 				String produs_final = "Denumire:   " + produs.getDenumire() + "   Cantitate:   " + produs.getCantitatePlayer() +
-						"   Pret Cumparare:   " + produs.getPretCumparare() + "   Pret Actual:   " + produs.getPretActual();
+						"   Pret Producere:   " + produs.getPretProducere() + "   Pret Cumparare:   " + produs.getPretCumparare() + 
+						"   Pret Actual:   " + produs.getPretActual();
 				produse_detinute_final.add(produs_final);
 			}
 		}

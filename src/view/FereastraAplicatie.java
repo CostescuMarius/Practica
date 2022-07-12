@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import Controller.DateJson;
 import model.Depozit;
 import model.Jucator;
 import model.Produs;
@@ -45,7 +46,7 @@ public class FereastraAplicatie{
 	
 	private ButoaneMeniu b = new ButoaneMeniu(this);
 	
-	public Jucator referinta_player;
+	Jucator referinta_player;
 	
 	private FereastraAplicatie()
 	{	
@@ -54,6 +55,11 @@ public class FereastraAplicatie{
 	public ScenaJocNou getScena2()
 	{
 		return scena2;
+	}
+	
+	public ScenaPiata getScena3()
+	{
+		return scena3;
 	}
 	
 	public void start_aplicatie()
@@ -192,6 +198,8 @@ public class FereastraAplicatie{
 	public void setare_scena5()
 	{
 		nr_scena = 5;
+		
+		scena5.update_produse_din_fabrica();
 		
 		cardLayout.show(p, "scena5");
 		f.repaint();

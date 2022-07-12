@@ -172,22 +172,14 @@ public class ButoaneJocNou {
         });
 	}
 	
+	Jucator referinta_player = Jucator.getInstance();
 	private void adaugare_fereastra_progres_si_vanzare_produse()
 	{
-		f_progres = new JFrame();
-		f_progres.setUndecorated(true);
-		f_progres.setBounds(560, 210, 400, 350);
-		f_progres.setVisible(true);
-    	
-    	JPanel p_progres = new JPanel();
-    	p_progres.setBackground(Color.black);
-    	p_progres.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.gray));
-    	p_progres.setLayout(null);
-    	
-    	int profit = 0;
+    	int bani_produsi = 0;
+    	int bani_inainte = 0;
+    	int bani_dupa = 0;
     	int produse_vandute = 0;
     	
-    	Jucator referinta_player = Jucator.getInstance();
 		referinta_player.setZiua(referinta_player.getZiua() + 1);
     	
     	for(Produs p : Depozit.getInstance().getEvidenta())
@@ -196,9 +188,10 @@ public class ButoaneJocNou {
 			{
 	    		produse_vandute = produse_vandute + p.getCantitateMagazin();
 	    		
-    			profit = profit + (p.getPretActual() - p.getPretCumparare());
-	    		
+	    		bani_inainte = referinta_player.getBani();
 				referinta_player.setBani(referinta_player.getBani() + p.getCantitateMagazin() * p.getPretActual());
+				bani_dupa = referinta_player.getBani();
+				
 				p.setCantitateMagazin(0);
 			}
 			
@@ -207,7 +200,7 @@ public class ButoaneJocNou {
 			
 			if(crestere == 0)
 			{
-				int procent = rand.nextInt(10) + 10;
+				int procent = rand.nextInt(10) + 5;
 				if((p.getPretActual() - (procent * p.getPretActual()) / 100) > 0)
 				{
 					p.setPretActual(p.getPretActual() - (procent * p.getPretActual()) / 100);
@@ -215,7 +208,7 @@ public class ButoaneJocNou {
 			}
 			else
 			{
-				int procent = rand.nextInt(20) + 10;
+				int procent = rand.nextInt(30) + 10;
 				p.setPretActual(p.getPretActual() + (procent * p.getPretActual()) / 100);
 			}
 			
@@ -223,44 +216,96 @@ public class ButoaneJocNou {
 			p.setCantitatePiata(cantitate);
     	}
     	
-    	JLabel l_progres1 = new JLabel("PROGRES");
-    	l_progres1.setForeground(Color.white);
-    	l_progres1.setFont(new Font("Times New Roman", Font.BOLD, 25));
-    	l_progres1.setBounds(130, 40, 120, 50);
+		if(referinta_player.getBani() >= 1000)
+		{
+			adaugare_fereastra_final_joc();
+		}
     	
-    	JLabel l_progres2 = new JLabel();
-    	l_progres2.setForeground(Color.white);
-    	l_progres2.setFont(new Font("Times New Roman", Font.BOLD, 20));
-    	l_progres2.setBounds(10, 100, 300, 50);
-    	if(profit > 0)
-    	{
-    		l_progres2.setText("Profit: " + profit);
-    	}
-    	else
-    	{
-    		l_progres2.setText("Profit: 0");
-    	}
+		else
+		{
+			f_progres = new JFrame();
+			f_progres.setUndecorated(true);
+			f_progres.setBounds(560, 210, 400, 350);
+			f_progres.setVisible(true);
+	    	
+	    	JPanel p_progres = new JPanel();
+	    	p_progres.setBackground(Color.black);
+	    	p_progres.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.gray));
+	    	p_progres.setLayout(null);
+	    	
+	    	JLabel l_progres1 = new JLabel("PROGRES");
+	    	l_progres1.setForeground(Color.white);
+	    	l_progres1.setFont(new Font("Times New Roman", Font.BOLD, 25));
+	    	l_progres1.setBounds(130, 40, 120, 50);
+	    	
+	    	JLabel l_progres2 = new JLabel();
+	    	l_progres2.setForeground(Color.white);
+	    	l_progres2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+	    	l_progres2.setBounds(10, 100, 300, 50);
+	    	
+	    	bani_produsi = bani_dupa - bani_inainte;
+	    	l_progres2.setText("Bani produsi: " + bani_produsi);
+	    	
+	    	JLabel l_progres3 = new JLabel();
+	    	l_progres3.setForeground(Color.white);
+	    	l_progres3.setFont(new Font("Times New Roman", Font.BOLD, 20));
+	    	l_progres3.setBounds(10, 150, 300, 50);
+	    	l_progres3.setText("Produse vandute: " + produse_vandute);
+	    	
+	    	JLabel l_progres4 = new JLabel();
+	    	l_progres4.setForeground(Color.white);
+	    	l_progres4.setFont(new Font("Times New Roman", Font.BOLD, 20));
+	    	l_progres4.setBounds(10, 200, 300, 50);
+	    	l_progres4.setText("Bani necesari: " + (1000 - referinta_player.getBani()));
+	    	
+	    	p_progres.add(l_progres1);
+	    	p_progres.add(l_progres2);
+	    	p_progres.add(l_progres3);
+	    	p_progres.add(l_progres4);
+	    	
+	    	p_progres.add(b_continua);
+	    	
+	    	f_progres.add(p_progres);
+		}
+	}
+	
+	private void adaugare_fereastra_final_joc()
+	{
+		JFrame f_final = new JFrame();
+		f_final.setUndecorated(true);
+		f_final.setBounds(560, 260, 400, 400);
+		f_final.setVisible(true);
     	
-    	JLabel l_progres3 = new JLabel();
-    	l_progres3.setForeground(Color.white);
-    	l_progres3.setFont(new Font("Times New Roman", Font.BOLD, 20));
-    	l_progres3.setBounds(10, 150, 300, 50);
-    	l_progres3.setText("Produse vandute: " + produse_vandute);
+    	JPanel p_final = new JPanel();
+    	p_final.setBackground(Color.black);
+    	p_final.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.gray));
+    	p_final.setLayout(null);
     	
-    	JLabel l_progres4 = new JLabel();
-    	l_progres4.setForeground(Color.white);
-    	l_progres4.setFont(new Font("Times New Roman", Font.BOLD, 20));
-    	l_progres4.setBounds(10, 200, 300, 50);
-    	l_progres4.setText("Bani necesari: " + (1000 - referinta_player.getBani()));
+    	JLabel l_final = new JLabel("Ai strans cele 1000 de bancnote in " + referinta_player.getZiua() + " zile");
+    	l_final.setForeground(Color.white);
+    	l_final.setFont(new Font("Times New Roman", Font.BOLD, 20));
+    	l_final.setBounds(15, 100, 385, 140);
     	
-    	p_progres.add(l_progres1);
-    	p_progres.add(l_progres2);
-    	p_progres.add(l_progres3);
-    	p_progres.add(l_progres4);
+    	p_final.add(l_final);
     	
-    	p_progres.add(b_continua);
+    	JButton b_exit = new JButton("Exit");
+    	b_exit.setFocusPainted(false);
+    	b_exit.setBackground(Color.black);
+    	b_exit.setForeground(Color.white);
+    	b_exit.setFont(new Font("Times New Roman", Font.BOLD, 20));
+    	b_exit.setBorder(null);
+    	b_exit.setBounds(145, 330, 100, 30);
     	
-    	f_progres.add(p_progres);
+		b_exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	System.exit(0);
+            }
+        });
+    	
+    	p_final.add(b_exit);
+    	
+    	f_final.add(p_final);
 	}
 	
 	private void adaugare_actiune_continua()

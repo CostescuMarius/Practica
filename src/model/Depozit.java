@@ -42,6 +42,19 @@ public class Depozit {
 		return evidenta;
 	}
 	
+	public Produs getProdusCuDenumirea(String denumire)
+	{
+		for(Produs p : evidenta)
+		{
+			if(p.getDenumire().equals(denumire))
+			{
+				return p;
+			}
+		}
+		
+		return null;
+	}
+	
 	public void setEvidenta(Vector<Produs> produse)
 	{
 		evidenta = produse;

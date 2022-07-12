@@ -122,7 +122,7 @@ public class ScenaJocNou extends JPanel{
 	private void adaugare_zi()
 	{
 		l_ziua = new JLabel("Ziua: " + player.getZiua());
-		l_ziua.setBounds(20, 5, 100, 50);
+		l_ziua.setBounds(20, 8, 100, 50);
 		l_ziua.setForeground(Color.orange);
 		l_ziua.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		

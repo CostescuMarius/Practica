@@ -1,0 +1,141 @@
+{
+  "evidenta": [
+    {
+      "m_denumire": "apa",
+      "m_cantitate_piata": 2,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 3,
+      "m_pret_cumparare" : 0,
+      "m_categorie" : "Bauturi"
+    },
+    {
+      "m_denumire": "faina",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 4,
+      "m_pret_cumparare" : 0,
+      "m_categorie" : "Materii prime"
+    },
+    {
+      "m_denumire": "paine",
+      "m_cantitate_piata": 2,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 7,
+      "m_pret_cumparare" : 0,
+      "m_categorie" : "Alimente"
+    },
+    {
+      "m_denumire": "arome",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 5,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Materii prime"
+    },
+    {
+      "m_denumire": "suc",
+      "m_cantitate_piata": 3,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 8,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Bauturi"
+    },
+    {
+      "m_denumire": "condimente",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 3,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Materii prime"
+    },
+    {
+      "m_denumire": "carne",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 5,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Materii prime"
+    },
+    {
+      "m_denumire": "salam",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 8,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Alimente"
+    },
+    {
+      "m_denumire": "sunca",
+      "m_cantitate_piata": 2,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 8,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Alimente"
+    },
+    {
+      "m_denumire": "mere",
+      "m_cantitate_piata": 2,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 10,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Fructe"
+    },
+    {
+      "m_denumire": "pere",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 10,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Fructe"
+    },
+    {
+      "m_denumire": "rosii",
+      "m_cantitate_piata": 1,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 5,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Legume"
+    },
+    {
+      "m_denumire": "castraveti",
+      "m_cantitate_piata": 4,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 5,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Legume"
+    },
+    {
+      "m_denumire": "salata",
+      "m_cantitate_piata": 2,
+      "m_cantitate_player": 0,
+      "m_cantitate_magazin": 0,
+      "m_pret_actual": 10,
+      "m_pret_cumparare" : 0,
+      "m_pret_producere" : 0,
+      "m_categorie" : "Alimente"
+    }
+  ]
+}

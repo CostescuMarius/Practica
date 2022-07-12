@@ -7,6 +7,7 @@ public class Produs {
 	private int m_cantitate_magazin;
 	private int m_pret_actual;
 	private int m_pret_cumparare;
+	private int m_pret_producere;
 	private String m_categorie;
 	
 	public Produs()
@@ -15,7 +16,7 @@ public class Produs {
 	}
 	
 	public Produs(String denumire, int cantitate_piata, int cantitate_player, int cantitate_magazin,
-			int pret_a, int pret_c, String categorie)
+			int pret_a, int pret_c, int pret_p, String categorie)
 	{
 		this.m_denumire = denumire;
 		this.m_cantitate_piata = cantitate_piata;
@@ -23,6 +24,7 @@ public class Produs {
 		this.m_cantitate_magazin = cantitate_magazin;
 		this.m_pret_actual = pret_a;
 		this.m_pret_cumparare = pret_c;
+		this.m_pret_producere = pret_p;
 		this.m_categorie = categorie;
 	}
 	
@@ -86,6 +88,16 @@ public class Produs {
 		this.m_pret_cumparare = pret_c;
 	}
 	
+	public int getPretProducere()
+	{
+		return this.m_pret_producere;
+	}
+	
+	public void setPretProducere(int pret_p)
+	{
+		this.m_pret_producere = pret_p;
+	}
+	
 	public String getCategorie()
 	{
 		return this.m_categorie;
@@ -108,7 +120,7 @@ public class Produs {
 	@Override
 	public String toString()
 	{
-		return "" + this.m_denumire + "    " + this.m_cantitate_piata + "   " + this.m_cantitate_player +
-				"    " + this.m_pret_actual + "    " + this.m_pret_cumparare + "    ";
+		return "" + this.m_denumire + "       " + this.m_cantitate_piata + "      " + this.m_cantitate_player +
+				"       " + this.m_pret_actual + "       " + this.m_pret_cumparare + "       ";
 	}
 }

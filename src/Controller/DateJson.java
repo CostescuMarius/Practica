@@ -1,4 +1,4 @@
-package model;
+package Controller;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,20 +9,21 @@ import java.io.Serializable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import model.Depozit;
+
 public class DateJson implements Serializable{
-	final String FileName = "src//date.json";
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void scriere_date_persoana()
+	public void scriere_date_persoana(String filename)
 	{
 		Depozit produse = Depozit.getInstance();
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.setPrettyPrinting().create();
 		
-		 try(FileWriter fw = new FileWriter(FileName)){
+		 try(FileWriter fw = new FileWriter(filename)){
 			gson.toJson(produse, fw);
 			
 		} catch (IOException e) {
@@ -30,14 +31,14 @@ public class DateJson implements Serializable{
 		}
 	}
 
-	public void citire_date_persoana()
+	public void citire_date_persoana(String filename)
 	{
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		
 		Depozit depozit_temp = Depozit.getInstance();
 		
-		try(FileReader fr = new FileReader(FileName)) {
+		try(FileReader fr = new FileReader(filename)) {
 			depozit_temp.set_data(gson.fromJson(fr, Depozit.class));
 			
 		} catch (FileNotFoundException e) {

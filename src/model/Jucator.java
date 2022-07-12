@@ -4,7 +4,6 @@ public class Jucator {
 	private int m_bani;
 	private int m_ziua;
 	
-	//singleton
 	private static Jucator instance = null;
 	private Jucator() 
 	{ 
