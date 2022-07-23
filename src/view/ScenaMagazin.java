@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import model.Depozit;
-import model.Produs;
+import Model.Depozit;
+import Model.Produs;
 
 public class ScenaMagazin extends JPanel{
 	private JComboBox<String> raft;

@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public class Produs {
 	private String m_denumire;

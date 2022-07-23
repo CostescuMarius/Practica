@@ -1,6 +1,6 @@
 package Controller;
 
-import view.FereastraAplicatie;
+import View.FereastraAplicatie;
 
 public class Principal {
 

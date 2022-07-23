@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -25,9 +25,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import model.Depozit;
-import model.Jucator;
-import model.Produs;
+import Model.Depozit;
+import Model.Jucator;
+import Model.Produs;
 
 public class ScenaPiata extends JPanel{
 	private BufferedImage image1;

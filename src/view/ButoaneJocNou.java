@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -20,9 +20,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import model.Depozit;
-import model.Jucator;
-import model.Produs;
+import Model.Depozit;
+import Model.Jucator;
+import Model.Produs;
 
 public class ButoaneJocNou {
 	FereastraAplicatie aplicatie;
@@ -191,6 +191,7 @@ public class ButoaneJocNou {
 	    		bani_inainte = referinta_player.getBani();
 				referinta_player.setBani(referinta_player.getBani() + p.getCantitateMagazin() * p.getPretActual());
 				bani_dupa = referinta_player.getBani();
+		    	bani_produsi = bani_produsi + (bani_dupa - bani_inainte);
 				
 				p.setCantitateMagazin(0);
 			}
@@ -243,7 +244,6 @@ public class ButoaneJocNou {
 	    	l_progres2.setFont(new Font("Times New Roman", Font.BOLD, 20));
 	    	l_progres2.setBounds(10, 100, 300, 50);
 	    	
-	    	bani_produsi = bani_dupa - bani_inainte;
 	    	l_progres2.setText("Bani produsi: " + bani_produsi);
 	    	
 	    	JLabel l_progres3 = new JLabel();

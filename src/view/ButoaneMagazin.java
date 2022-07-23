@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import model.Depozit;
-import model.Produs;
+import Model.Depozit;
+import Model.Produs;
 
 public class ButoaneMagazin {
 	private JButton b_inapoi;

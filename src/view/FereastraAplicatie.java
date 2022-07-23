@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -16,9 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import Controller.DateJson;
-import model.Depozit;
-import model.Jucator;
-import model.Produs;
+import Model.Depozit;
+import Model.Jucator;
+import Model.Produs;
 
 public class FereastraAplicatie{
 	private static FereastraAplicatie instance = null;

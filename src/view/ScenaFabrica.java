@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,8 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import model.Depozit;
-import model.Produs;
+import Model.Depozit;
+import Model.Produs;
 
 import javax.swing.JLabel;
 

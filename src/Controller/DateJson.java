@@ -9,7 +9,7 @@ import java.io.Serializable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import model.Depozit;
+import Model.Depozit;
 
 public class DateJson implements Serializable{
 	/**

@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public class Jucator {
 	private int m_bani;

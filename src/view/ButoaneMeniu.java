@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Controller.DateJson;
-import model.Jucator;
+import Model.Jucator;
 
 public class ButoaneMeniu {
 	JButton b_joc_nou;
@@ -272,7 +272,7 @@ public class ButoaneMeniu {
     	l_tutorial1.setBounds(100, 40, 300, 50);
     	
     	JLabel l_tutorial2 = new JLabel("<html>    Scopul jocului: Obtinerea a 1000 bancnote intr-un numar cat mai mic de zile. "
-    			+ "<br> <br> Modalitati: <br> 1. Cumpararea produselor si vinderea lor in urma cresterii pretului."
+    			+ "<br> <br> Modalitati: <br> 1. Cumpararea produselor si vanzarea lor in urma cresterii pretului."
     			+ "<br> 2. Fabricarea de produse care valoreaza mai mult decat materialele din care sunt facute.</html>");
     	l_tutorial2.setForeground(Color.white);
     	l_tutorial2.setFont(new Font("Times New Roman", Font.BOLD, 20));
